@@ -77,14 +77,23 @@ module.exports.deleteSpot = async (req, res) => {
 }
 
 module.exports.likeSpot = async (req, res) => {
-    let filmspot = await Filmspot.findById(req.params.id);
-    if (filmspot.likes.includes(req.user._id)) {
-      // User already liked this filmspot, so unlike it
-      filmspot.likes.pull(req.user._id);
-    } else {
-      // User has not yet liked this filmspot, so like it
-      filmspot.likes.push(req.user._id);
+    try {
+        let filmspot = await Filmspot.findById(req.params.id);
+        if (filmspot.likes.includes(req.user._id)) {
+            // User already liked this filmspot, so unlike it
+            filmspot.likes.pull(req.user._id);
+            console.log("removed")
+        } else {
+            // User has not yet liked this filmspot, so like it
+            filmspot.likes.push(req.user._id);
+            console.log("added")
+        }
+        await filmspot.save();
+
+        // Return a JSON response with the updated like count
+        res.redirect(`/filmspots/${filmspot._id}`)
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while processing the like request.' });
     }
-    await filmspot.save();
-    res.redirect(`/filmspots/${filmspot._id}`);
-  };
+};

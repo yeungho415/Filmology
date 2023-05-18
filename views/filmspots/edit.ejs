@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/css/images.css" class="rel">
     <div class="row">
         <h1 class="text-center">Edit Spot</h1>
-        <div class="col-md-6 offset-md-3">
+        <div class="col-6 offset-3">
             <form action="/filmspots/<%=filmspot._id%>?_method=PUT" method="POST" novalidate class="validated-form"
                 enctype="multipart/form-data">
                 <div class="mb-3">
@@ -53,9 +53,9 @@
                         <% }) %>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-info">Save filmspot</button>
+                    <button class="btn btn-success">Save spot</button>
+                    <a href="/filmspots/<%= filmspot._id %>" class="btn btn-info">Back to filmspots</a>
                 </div>
             </form>
-            <a href="/filmspots/<%= filmspot._id %>">Back to filmspots</a>
         </div>
     </div>
