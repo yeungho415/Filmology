@@ -17,36 +17,24 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <div class="container-fluid">
                     <a class="navbar-brand" style="color:white; font-size: 35px" href="#">FILMOLOGY</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    <button class="navbar-toggler my-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" style="color:white; font-size: 18px" aria-current="page"
-                                    href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" style="color:white; font-size: 18px" href="/filmspots">Spots</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <% if(!currUser) { %>
-                                <li class="nav-item">
-                                    <a class="nav-link" style="color:white; font-size: 18px" href="/login">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" style="color:white; font-size: 18px"
-                                        href="/register">Register</a>
-                                </li>
-                                <% } else { %>
-                                    <li class="nav-item">
-                                        <a class="nav-link" style="color:white; font-size: 18px"
-                                            href="/logout">Logout</a>
-                                    </li>
-                                    <% } %>
-                        </ul>
+                        <div class="navbar-nav">
+                            <a class="nav-link" style="color:white; font-size: 18px" href="/">Home</a>
+                            <a class="nav-link" style="color:white; font-size: 18px" href="/filmspots">Spots</a>
+                            <a class="nav-link" style="color:white; font-size: 18px" href="/filmspots/new">New Spot</a>
+                        </div>
+                        <div class="navbar-nav ml-auto ms-auto">
+                            <% if (!currUser) { %>
+                            <a href="/login" style="color:white; font-size: 18px" class="nav-link">Login</a>
+                            <a href="/register" style="color:white; font-size: 18px" class="nav-link">Register</a>
+                            <% } else { %>
+                            <a href="/logout" style="color:white; font-size: 18px" class="nav-link">Logout</a>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
             </nav>
