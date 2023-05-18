@@ -19,12 +19,12 @@ const mongoSanitize = require("express-mongo-sanitize")
 const userRoutes = require("./routes/users")
 const filmspotRoutes = require("./routes/filmspots")
 const reviewRoutes = require("./routes/reviews")
-// const dbUrl = process.env.DB_URL 
+const dbUrl = process.env.DB_URL 
 const MongoStore = require('connect-mongo');
 
-const dbUrl = "mongodb://localhost:27017/film-spot"
+
 // "mongodb://localhost:27017/film-spot"
-mongoose.connect("mongodb://localhost:27017/film-spot")
+mongoose.connect(dbUrl)
 
 
 const db = mongoose.connection;
