@@ -1,0 +1,37 @@
+<% layout("layouts/boilerplate") %>
+    <link rel="stylesheet" href="/css/images.css" class="rel">
+    <div class="row">
+        <h1 class="text-center">New Spot</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/filmspots" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="filmspot[title]" id="title" required>
+                    <div class="valid-feedback">Great!</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" name="filmspot[location]" id="location" required>
+                    <div class="valid-feedback">Great!</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Choose image(s)</label>
+                    <input class="form-control" type="file" id="imageUpload" name="image" multiple>
+                    <div class="mt-3" id="formFile"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="filmUsed">Film Used</label>
+                    <input class="form-control" type="text" name="filmspot[filmUsed]" id="filmUsed" required>
+                    <div class="valid-feedback">Great!</div>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-success">Add filmspot</button>
+                </div>
+            </form>
+            <a href="/filmspots">All filmspots</a>
+        </div>
+    </div>
+

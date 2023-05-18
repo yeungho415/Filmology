@@ -1,0 +1,61 @@
+<% layout("layouts/boilerplate") %>
+    <link rel="stylesheet" href="/css/images.css" class="rel">
+    <div class="row">
+        <h1 class="text-center">Edit Spot</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/filmspots/<%=filmspot._id%>?_method=PUT" method="POST" novalidate class="validated-form"
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="filmspot[title]" id="title"
+                        value="<%=filmspot.title%>" required>
+                    <div class="valid-feedback">Great!</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" name="filmspot[location]" id="loaction"
+                        value="<%=filmspot.location%>" required>
+                    <div class="valid-feedback">Great!</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="filmUsed">Film Used</label>
+                    <input class="form-control" type="text" name="filmspot[filmUsed]" id="filmUsed"
+                        value="<%=filmspot.filmUsed%>" required>
+                    <div class="valid-feedback">Great!</div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Choose image(s)</label>
+                    <input class="form-control" type="file" id="imageUpload" name="image" multiple>
+                    <div class="mt-3" id="formFile"></div>
+                </div>
+                <!-- <div class="mb-3">
+                    <% filmspot.image.forEach(function(img, i) {  %>
+                        <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                        </div>
+                        <label for="image-<%=i%>">Delete?</label>
+                        <% })%>
+                </div> -->
+                <h5> Delete Images </h5>
+                <div class="row row-cols-1 row-cols-md-4 g-4 mb-3">
+                    <% filmspot.image.forEach((image, i)=> { %>
+                        <div class="col">
+                            <div class="card">
+                                <img class="card-img" src="<%= image.thumbnail %>" alt="">
+                                <div class="card-img-overlay text-end pt-1 pe-2">
+                                    <label class="visually-hidden" for="image-<%= i %>">Delete Image</label>
+                                    <input class="form-check-input" type="checkbox" name="deleteImages[]"
+                                        value="<%= image.filename %>" id="image-<%= i %>">
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Save filmspot</button>
+                </div>
+            </form>
+            <a href="/filmspots/<%= filmspot._id %>">Back to filmspots</a>
+        </div>
+    </div>
