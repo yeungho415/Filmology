@@ -29,6 +29,8 @@ router.route("/:id")
 
 router.get("/:id/edit", isLoggedIn, isAuthor, catchAsync(filmspots.renderEditForm))
 
+router.post("/:id/like", isLoggedIn, catchAsync(filmspots.likeSpot))
+
 
 
 

@@ -25,6 +25,7 @@ const MongoStore = require('connect-mongo');
 
 // "mongodb://localhost:27017/film-spot"
 mongoose.connect(dbUrl)
+// mongoose.connect("mongodb://localhost:27017/film-spot")
 
 
 const db = mongoose.connection;

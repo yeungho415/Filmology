@@ -75,3 +75,16 @@ module.exports.deleteSpot = async (req, res) => {
     req.flash("success", "spot deleted")
     res.redirect("/filmspots");
 }
+
+module.exports.likeSpot = async (req, res) => {
+    let filmspot = await Filmspot.findById(req.params.id);
+    if (filmspot.likes.includes(req.user._id)) {
+      // User already liked this filmspot, so unlike it
+      filmspot.likes.pull(req.user._id);
+    } else {
+      // User has not yet liked this filmspot, so like it
+      filmspot.likes.push(req.user._id);
+    }
+    await filmspot.save();
+    res.redirect(`/filmspots/${filmspot._id}`);
+  };

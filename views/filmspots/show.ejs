@@ -3,23 +3,25 @@
         <div class="col-8">
             <div id="filmspotcarousel" class="carousel slide">
                 <div class="carousel-inner">
-                    <% filmspot.image.forEach((img, i) => {%>
-                    <div class="carousel-item <%= i === 0 ? "active" : "" %>">
-                        <img crossorigin="anonymous" src="<%= img.url %>" class="d-block w-100" alt="...">
-                    </div>
-                    <% }) %>
+                    <% filmspot.image.forEach((img, i)=> {%>
+                        <div class="carousel-item <%= i === 0 ? " active" : "" %>">
+                            <img crossorigin="anonymous" src="<%= img.url %>" class="d-block w-100" alt="...">
+                        </div>
+                        <% }) %>
                 </div>
-                <% if (filmspot.image.length > 1) {%>
-                <button class="carousel-control-prev" type="button" data-bs-target="#filmspotcarousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#filmspotcarousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-                <% } %>
-              </div>
+                <% if (filmspot.image.length> 1) {%>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#filmspotcarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#filmspotcarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <% } %>
+            </div>
 
             <div class="card mb-3">
                 <div class="card-body">
@@ -30,28 +32,49 @@
                         content.</p> -->
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-muted">
+                    <li class="list-group-item text-muted"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                        </svg>
                         <%= filmspot.location %>
                     </li>
-                    <li class="list-group-item"> Posted by
+                    <li class="list-group-item"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>
                         <%= filmspot.author.username %>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z" />
+                        </svg>
                         <%= filmspot.filmUsed %>
                     </li>
-                    <li class="list-group-item">date</li>
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path
+                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                        </svg>
+                        <span id="like-count">
+                            <%= filmspot.likes.length %>
+                        </span>
+                    </li>
                 </ul>
                 <% if (currUser && filmspot.author.equals(currUser._id)) {%>
-                <div class="card-body">
-                    <a class="card-link btn btn-info" href="/filmspots/<%=filmspot._id%>/edit">Edit</a>
-                    <form class="d-inline" action="/filmspots/<%= filmspot._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
-                <% } %>
-                <div class="card-footer text-muted">
-                    <a href="/filmspots">All fimspots</a>
-                </div>
+                    <div class="card-body">
+                        <a class="card-link btn btn-info" href="/filmspots/<%=filmspot._id%>/edit">Edit</a>
+                        <form class="d-inline" action="/filmspots/<%= filmspot._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <% } %>
+                        <div class="card-footer text-muted">
+                            <a href="/filmspots">All fimspots</a>
+                        </div>
             </div>
         </div>
 
@@ -59,41 +82,76 @@
         <div class="col-4">
             <div id='map'></div>
             <% if (currUser) { %>
-            <h2>Leave a Comment</h2>
-            <form action="/filmspots/<%= filmspot._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
-                <div class="mb-3">
+                <h2>Leave a Comment</h2>
+                <form action="/filmspots/<%= filmspot._id %>/reviews" method="POST" class="mb-3 validated-form"
+                    novalidate>
+                    <!-- <div class="mb-3">
                     <label class="form-label" for="rating">Rating</label>
                     <input type="range" class="form-range" min="1" max="5" name="review[rating]" id="rating">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="body">Comment</label>
-                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
-                    <div class="valid-feedback">Great!</div>
-                </div>
-                <button class="btn btn-success">submit</button>
-            </form>
-            <% } %>
-            <% for (let review of filmspot.reviews) { %>
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Rating: <%= review.rating %></h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">By <%= review.author.username %></h6>
-                        <p class="card-text">Comment: <%= review.body %></p>
-                        <% if (currUser && review.author.equals(currUser._id)) {%>
-                        <form action="/filmspots/<%= filmspot._id %>/reviews/<%= review._id%>?_method=DELETE" method="POST">
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                        <% } %>
+                </div> -->
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Comment</label>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
+                            required></textarea>
+                        <div class="valid-feedback">Great!</div>
                     </div>
-                </div>
-            <% } %>
+                    <button class="btn btn-success">submit</button>
+                </form>
+                <form action="/filmspots/<%= filmspot._id %>/like" method="POST" class="mb-3">
+
+                    <button id="like-button" class="btn btn-primary">
+                        <%= filmspot.likes.includes(currUser._id) ? 'Unlike' : 'Like' %>
+                    </button>
+
+                </form>
+                <% } %>
+                    <% for (let review of filmspot.reviews) { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Rating: <%= review.rating %>
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">By <%= review.author.username %>
+                                </h6>
+                                <p class="card-text">Comment: <%= review.body %>
+                                </p>
+                                <% if (currUser && review.author.equals(currUser._id)) {%>
+                                    <form
+                                        action="/filmspots/<%= filmspot._id %>/reviews/<%= review._id%>?_method=DELETE"
+                                        method="POST">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <% } %>
+                            </div>
+                        </div>
+                        <% } %>
         </div>
     </div>
 
+    <script>
+        const likeButton = document.querySelector('#like-button');
+        likeButton.addEventListener('click', async () => {
+            const response = await fetch(`/filmspots/${filmspot._id}/like`, {
+                method: 'POST',
+            });
+            if (response.ok) {
+                const newText = likeButton.textContent === 'Like' ? 'Unlike' : 'Like';
+                likeButton.textContent = newText;
+
+                // Updating the button class according to its state
+                if (newText === 'Like') {
+                    likeButton.classList.remove('btn-danger');
+                    likeButton.classList.add('btn-primary');
+                } else {
+                    likeButton.classList.remove('btn-primary');
+                    likeButton.classList.add('btn-danger');
+                }
+            }
+        });
+    </script>
 
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>'
         const filmspot = <%- JSON.stringify(filmspot) %>
     </script>
-    
+
     <script src="/js/showPageMap.js"></script>
