@@ -11,26 +11,45 @@
     <link rel="stylesheet" href="/css/home.css">
 </head>
 
-<body class="text-center text-white bg-dark">
-    <div class="container d-flex flex-column min-vh-100 py-3">
-        <header class="mb-auto">
-            <div class="d-flex align-items-center justify-content-between">
-                <h3 class="mb-0">FILMOLOGY</h3>
-                <div>
-                    <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="/filmspots">Spots</a>
-                    </nav>
-                    <nav class="nav nav-masthead justify-content-center">
-                        <% if(!currUser) { %>
-                            <a class="nav-link" href="/login">Login</a>
-                            <a class="nav-link" href="/register">Register</a>
-                        <% } else { %>
-                            <a class="nav-link" href="/logout">Logout</a>
-                        <% } %>
-                    </nav>
+<body class="d-flex text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                <div class="container-fluid">
+                    <a class="navbar-brand" style="color:white; font-size: 35px" href="#">FILMOLOGY</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" style="color:white; font-size: 18px" aria-current="page"
+                                    href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color:white; font-size: 18px" href="/filmspots">Spots</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                            <% if(!currUser) { %>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white; font-size: 18px" href="/login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white; font-size: 18px"
+                                        href="/register">Register</a>
+                                </li>
+                                <% } else { %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" style="color:white; font-size: 18px"
+                                            href="/logout">Logout</a>
+                                    </li>
+                                    <% } %>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </nav>
         </header>
 
 
@@ -51,7 +70,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="mt-auto">
             <main class="px-3">
                 <h1>FILMOLOGY</h1>
                 <p class="lead"> Welcome to FILMOLOGY! <br> Jump right in and explore our many spots. <br>
